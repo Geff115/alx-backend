@@ -9,7 +9,15 @@ from collections import defaultdict
 
 
 class LFUCache(BaseCaching):
+    """
+    This class implements a MRU algorithm
+    cache policy
+    """
+
     def __init__(self):
+        """Calling the parent's class init method
+        to initialize self.cache_data and MAX_ITEMS
+        """
         super().__init__()
         # Maps frequency to a list of keys with that frequency
         self.freq = defaultdict(list)
@@ -19,6 +27,9 @@ class LFUCache(BaseCaching):
         self.min_freq = 0
 
     def put(self, key, item):
+        """This method assigns to the dictionary self.cache_data
+        the item value for the key.
+        """
         if key is None or item is None:
             return
 
@@ -45,6 +56,9 @@ class LFUCache(BaseCaching):
             self.min_freq = 1  # Reset min_freq to 1 for the new item
 
     def get(self, key):
+        """This method returns the value of self.cache_data
+        link to key.
+        """
         if key is None or key not in self.cache_data:
             return None
 

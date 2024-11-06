@@ -10,8 +10,10 @@ from typing import Optional
 
 Config = __import__('1-app').Config
 app = __import__('0-app').app
-app.config.from_object(Config)
 babel = __import__('1-app').babel
+
+
+app.config.from_object(Config)
 
 
 @babel.localeselector

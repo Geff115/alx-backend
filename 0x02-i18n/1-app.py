@@ -4,11 +4,12 @@ This script instantiate Babel object in the app,
 creating a Config class for the Flask app.
 """
 
-from flask import Flask
 from flask_babel import Babel
 
 
-app = Flask(__name__)
+app = __import__('0-app').app
+
+
 babel = Babel(app)
 
 

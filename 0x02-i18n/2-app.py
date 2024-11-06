@@ -4,15 +4,14 @@ This script creates a get_locale function with a
 babel.localeselector decorator
 """
 
-from flask_babel import Babel
 from flask import request
 from typing import Optional
 
 Config = __import__('1-app').Config
 app = __import__('0-app').app
+babel = __import__('1-app').babel
 
 
-babel = Babel(app)
 app.config.from_object(Config)
 
 

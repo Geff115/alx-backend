@@ -4,7 +4,7 @@ This script creates a get_locale function with a
 babel.localeselector decorator
 """
 
-from flask_babel import _
+from flask_babel import gettext
 from flask import request, render_template
 from typing import Optional
 

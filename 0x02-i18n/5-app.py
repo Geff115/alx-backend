@@ -12,6 +12,9 @@ from flask_babel import gettext
 
 app = __import__('0-app').app
 babel = __import__('1-app').babel
+Config = __import__('1-app').Config
+
+app.config.from_object(Config)
 
 
 users = {

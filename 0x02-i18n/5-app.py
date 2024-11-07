@@ -13,6 +13,7 @@ from flask_babel import gettext
 app = __import__('0-app').app
 babel = __import__('1-app').babel
 Config = __import__('1-app').Config
+get_locale = __import__('4-app').get_locale
 
 app.config.from_object(Config)
 

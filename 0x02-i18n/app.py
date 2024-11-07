@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
 """
-This script defines a get_timezone function and
-uses babel.timezoneselector.
+This script determines the current datetime and
+based on the inferred timezone and display the
+current time on the homepage in the default format
 """
 
+
 import pytz
+from flask_babel import gettext
 from flask import request, g, render_template
 from typing import Optional
 from pytz import exceptions
+from datetime import datetime
 
 
 babel = __import__('1-app').babel
@@ -30,6 +34,7 @@ def before_request() -> None:
     login_as = request.args.get("login_as", type=int)
     # Set g.user based on the login_as value
     g.user = get_user(login_as)
+    g.timezone = get_timezone()
 
 
 @babel.timezoneselector
@@ -47,7 +52,7 @@ def get_timezone() -> Optional[str]:
             return timezone_value
         # Invalid timezone error
         except exceptions.UnknownTimezoneError:
-            pass # Go on to the next steps
+            pass  # Go on to the next steps
 
     # Checking if the user has a preferred timezone
     if g.user and g.user.get('timezone'):
@@ -62,9 +67,13 @@ def get_timezone() -> Optional[str]:
     return 'UTC'
 
 
-# @app.route('/')
-def user_timezone() -> str:
-    """Rendering the homepage with the
-    translated languages.
+@app.route('/')
+def display_current_time():
     """
-    # return render_template('7-index.html')
+    Displaying the current time in the home page
+    """
+    # Setting the current time based on the selected timezone
+    timezone = pytz.timezone(g.timezone or 'UTC')
+    current_time = datetime.now(timezone).strftime('%b %d, %Y, %I:%M:%S %p')
+
+    return render_template('index.html', current_time=current_time)

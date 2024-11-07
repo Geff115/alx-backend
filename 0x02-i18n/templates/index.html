@@ -8,9 +8,11 @@
     <body>
         <h1>{{ gettext('home_header') }}</h1>
         {% if g.user %}
-            <p>{{ gettext("logged_in_as", username=g.user['name']) }}</p>
+            <strong><p>{{ gettext("logged_in_as", username=g.user['name']) }}</p></strong>
         {% else %}
-            <p>{{ gettext("not_logged_in") }}</p>
+            <strong><p>{{ gettext("not_logged_in") }}</p></strong>
         {% endif %}
+
+        <strong><p>{{ gettext("current_time_is", current_time=current_time) }}</p></strong>
     </body>
 </html>

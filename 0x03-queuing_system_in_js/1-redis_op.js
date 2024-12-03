@@ -1,3 +1,6 @@
+// I did not use redis.print due to the higher version of Redis server
+// I am running on my machine. I instead used a callback function.
+
 import { redisClientFactory } from "kue";
 import { createClient } from "redis";
 

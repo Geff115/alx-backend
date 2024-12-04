@@ -1,5 +1,6 @@
 import { createClient } from 'redis';
 import { promisify } from 'util';
+import { express } from 'express'
 import kue from 'kue';
 
 // Setting up the Redis client

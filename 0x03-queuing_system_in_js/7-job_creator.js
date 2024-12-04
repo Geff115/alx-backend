@@ -57,13 +57,13 @@ jobs.forEach((jobData) => {
   // Event listeners for the job
   job
     .on("complete", () => {
-      console.log(`Notification job ${job.id} completed`);
+      console.log(`Notification job #${job.id} completed`);
     })
     .on("failed", (err) => {
-      console.log(`Notification job ${job.id} failed: ${err}`);
+      console.log(`Notification job #${job.id} failed: ${err}`);
     })
     .on("progress", (progress) => {
-      console.log(`Notification job ${job.id} ${progress}% complete`);
+      console.log(`Notification job #${job.id} ${progress}% complete`);
     });
 
     // Saving the job to the queue
